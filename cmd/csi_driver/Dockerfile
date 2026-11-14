@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Build driver go binary
-FROM --platform=$BUILDPLATFORM golang:1.23 AS driver-builder
+FROM --platform=$BUILDPLATFORM golang:1.27.4 AS driver-builder
 
 ARG STAGINGVERSION
 ARG TARGETARCH
@@ -25,7 +25,7 @@ ADD . .
 RUN make driver BINDIR=/bin GOARCH=${TARGETARCH}
 
 # Use Alpine as the runtime base to support linux/riscv64
-FROM alpine:3.20
+FROM alpine:3.24.4
 
 # Install util-linux for mount/umount and ca-certificates for TLS
 RUN apk add --no-cache util-linux ca-certificates
