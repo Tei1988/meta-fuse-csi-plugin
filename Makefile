@@ -48,7 +48,7 @@ all: build-driver build-examples
 
 driver:
 	mkdir -p ${BINDIR}
-	CGO_ENABLED=0 GOOS=linux go build -ldflags "${LDFLAGS}" -o ${BINDIR}/${DRIVER_BINARY} cmd/csi_driver/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=${GOARCH} go build -ldflags "${LDFLAGS}" -o ${BINDIR}/${DRIVER_BINARY} cmd/csi_driver/main.go
 
 fuse-starter:
 	mkdir -p ${BINDIR}
